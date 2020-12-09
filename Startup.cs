@@ -1,4 +1,6 @@
 using CourseMVC.Data;
+using CourseMVC.Interfaces;
+using CourseMVC.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,10 @@ namespace CourseMVC
             // Configure EntityFramework
             services.AddDbContext<ApplicationDbContext>(
                 options => options.
-                UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
+                UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // Configure DI
+            services.AddScoped<ICategoryRepo, CategoryRepoImpl>();
+            // Configure MVC
             services.AddControllersWithViews();
         }
 
