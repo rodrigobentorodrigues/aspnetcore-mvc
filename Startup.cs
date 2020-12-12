@@ -28,6 +28,7 @@ namespace CourseMVC
                 UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Configure DI
             services.AddScoped<ICategoryRepo, CategoryRepoImpl>();
+            services.AddScoped<IApplicationTypeRepo, ApplicationTypeRepoImpl>();
             // Configure MVC
             services.AddControllersWithViews();
         }
