@@ -28,8 +28,12 @@ namespace CourseMVC.Controllers
         [HttpPost]
         public IActionResult Create(Category category)
         {
-            categoryDAO.Insert(category);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                categoryDAO.Insert(category);
+                return RedirectToAction("Index");
+            }
+            return View(category);
         }
 
     }
