@@ -7,6 +7,7 @@ namespace CourseMVC.Interfaces
     {
 
         IEnumerable<Category> ListAll();
+        void Insert(Category category);
 
     }
 }

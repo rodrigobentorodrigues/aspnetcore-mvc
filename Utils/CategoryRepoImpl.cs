@@ -14,6 +14,12 @@ namespace CourseMVC.Utils
             this.dbContext = context;
         }
 
+        public void Insert(Category category)
+        {
+            dbContext.Categories.Add(category);
+            dbContext.SaveChanges();
+        }
+
         public IEnumerable<Category> ListAll()
         {
             return dbContext.Categories;
