@@ -14,6 +14,11 @@ namespace CourseMVC.Utils
             this.dbContext = context;
         }
 
+        public Category GetById(int? id)
+        {
+            return dbContext.Categories.Find(id);
+        }
+
         public void Insert(Category category)
         {
             dbContext.Categories.Add(category);
@@ -23,6 +28,12 @@ namespace CourseMVC.Utils
         public IEnumerable<Category> ListAll()
         {
             return dbContext.Categories;
+        }
+
+        public void Update(Category category)
+        {
+            dbContext.Categories.Update(category);
+            dbContext.SaveChanges();
         }
     }
 }

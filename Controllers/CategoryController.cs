@@ -26,11 +26,36 @@ namespace CourseMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
             if (ModelState.IsValid)
             {
                 categoryDAO.Insert(category);
+                return RedirectToAction("Index");
+            }
+            return View(category);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+
+            Category category = categoryDAO.GetById(id);
+            if (category == null)
+                return NotFound();
+
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                categoryDAO.Update(category);
                 return RedirectToAction("Index");
             }
             return View(category);

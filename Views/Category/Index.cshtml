@@ -30,6 +30,16 @@
                     <tr>
                         <td style="width: 50%">@category.Name</td>
                         <td style="width: 30%">@category.DisplayOrder</td>
+                        <td class="text-center">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-Id="@category.Id" 
+                               class="btn btn-primary">
+                                Edit
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-Id="@category.Id"
+                               class="btn btn-danger">
+                                Delete
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>
