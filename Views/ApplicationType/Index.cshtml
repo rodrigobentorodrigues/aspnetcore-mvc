@@ -28,6 +28,16 @@
                 {
                     <tr>
                         <td style="width: 50%">@type.Name</td>
+                        <td class="text-center">
+                            <a asp-controller="ApplicationType" asp-action="Edit" asp-route-Id="@type.Id" 
+                               class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-controller="ApplicationType" asp-action="Delete" asp-route-Id="@type.Id"
+                               class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>

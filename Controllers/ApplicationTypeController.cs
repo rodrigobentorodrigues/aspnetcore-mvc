@@ -26,9 +26,64 @@ namespace CourseMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(ApplicationType applicationType)
         {
-            appTypeDAO.Insert(applicationType);
+            if (ModelState.IsValid)
+            {
+                appTypeDAO.Insert(applicationType);
+                return RedirectToAction("Index");
+            }
+
+            return View(applicationType);
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+
+            ApplicationType applicationType = appTypeDAO.GetById(id);
+            if (applicationType == null)
+                return NotFound();
+
+            return View(applicationType);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ApplicationType applicationType)
+        {
+            if (ModelState.IsValid)
+            {
+                appTypeDAO.Update(applicationType);
+                return RedirectToAction("Index");
+            }
+
+            return View(applicationType);
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+
+            ApplicationType applicationType = appTypeDAO.GetById(id);
+            if (applicationType == null)
+                return NotFound();
+
+            return View(applicationType);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            ApplicationType applicationType = appTypeDAO.GetById(id);
+            if (applicationType == null)
+                return NotFound();
+
+            appTypeDAO.Delete(applicationType);
             return RedirectToAction("Index");
         }
 
