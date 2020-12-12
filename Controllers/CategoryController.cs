@@ -61,5 +61,28 @@ namespace CourseMVC.Controllers
             return View(category);
         }
 
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+
+            Category category = categoryDAO.GetById(id);
+            if (category == null)
+                return NotFound();
+
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult DeletePost(int? id)
+        {
+            Category category = categoryDAO.GetById(id);
+            if (category == null)
+                return NotFound();
+            
+            categoryDAO.Delete(category);
+            return RedirectToAction("Index");
+        }
+
     }
 }

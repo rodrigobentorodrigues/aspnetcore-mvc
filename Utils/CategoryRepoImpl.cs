@@ -14,6 +14,12 @@ namespace CourseMVC.Utils
             this.dbContext = context;
         }
 
+        public void Delete(Category category)
+        {
+            dbContext.Categories.Remove(category);
+            dbContext.SaveChanges();
+        }
+
         public Category GetById(int? id)
         {
             return dbContext.Categories.Find(id);

@@ -8,6 +8,7 @@ namespace CourseMVC.Interfaces
 
         IEnumerable<Category> ListAll();
         Category GetById(int? id);
+        void Delete(Category category);
         void Insert(Category category);
         void Update(Category category);
 
